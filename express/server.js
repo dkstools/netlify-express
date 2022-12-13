@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-const PORT = process.env.PORT || 5000;
+//const PORT = process.env.PORT || 5000;
+const serverless = require('serverless-http');
 const TelegramBot = require('node-telegram-bot-api');
 
 var app = express();
@@ -44,4 +45,7 @@ bot.sendMessage(req.body.telid, msg);
    res.send("recieved your request!");
 });
 
-app.listen(PORT);
+// app.listen(PORT);
+
+module.exports = app;
+module.exports.handler = serverless(app);
